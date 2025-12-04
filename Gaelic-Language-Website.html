@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Living Voice: A Gaelic Awareness Campaign</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Lora (serif for headings) and Inter (sans-serif for body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
+                    },
+                    colors: {
+                        'brand-deep': '#0f172a', // Deep slate blue
+                        'brand-light': '#cbd5e1', // Light slate gray (text)
+                        'brand-accent': '#10b981', // Emerald green
+                        'brand-card': '#1e293b',  // Darker slate card bg
+                    }
+                },
+            },
+        };
+    </script>
+
+    <!-- Internal CSS for animations and styling -->
+    <style>
+        /* Base styles */
+        body {
+            background-color: #0f172a; /* brand-deep */
+            color: #cbd5e1; /* brand-light */
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Custom selection color */
+        ::selection {
+            background-color: #10b981; /* brand-accent */
+            color: #0f172a; /* brand-deep */
+        }
+
+        /* Hero section background */
+        /* Removed .hero-bg rule as background image is no longer used */
+
+        /* Fade-in animation on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Delay for staggered animations */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        /* Tab styling */
+        [role="tab"] {
+            transition: all 0.2s ease-in-out;
+        }
+
+        [role="tab"][aria-selected="true"] {
+            border-color: #10b981; /* brand-accent */
+            color: #10b981;
+            background-color: #1e293b; /* brand-card */
+        }
+
+        /* Sticky nav active link style */
+        .nav-active {
+            color: #10b981; /* brand-accent */
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 
+      Sticky Navigation Bar 
+    -->
+    <header id="navbar" class="bg-brand-deep/80 backdrop-blur-md sticky top-0 z-50 w-full border-b border-brand-card">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-serif text-2xl font-bold text-white">The Living Voice</span>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="#what" class="nav-link text-brand-light hover:text-white inline-flex items-center px-1 pt-1 text-sm font-medium">What is it?</a>
+                    <a href="#where" class="nav-link text-brand-light hover:text-white inline-flex items-center px-1 pt-1 text-sm font-medium">Where?</a>
+                    <a href="#why" class="nav-link text-brand-light hover:text-white inline-flex items-center px-1 pt-1 text-sm font-medium">Why?</a>
+                    <a href="#revival" class="nav-link text-brand-light hover:text-white inline-flex items-center px-1 pt-1 text-sm font-medium">The Revival</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 
+          Section 1: Hero 
+        -->
+        <section class="bg-brand-card h-screen flex flex-col justify-center items-center text-center p-4">
+            <h1 class="font-serif text-5xl md:text-8xl font-bold text-white drop-shadow-lg">
+                The Living Voice
+            </h1>
+            <p class="mt-4 text-xl md:text-3xl text-brand-light font-light max-w-3xl">
+                An awareness campaign for the endangered Gaelic languages.
+            </p>
+            <div class="absolute bottom-10 animate-bounce">
+                <a href="#what" class="text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- 
+          Section 2: What is it? (Rubric Q1)
+        -->
+        <section id="what" class="py-20 sm:py-32">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center fade-in">
+                    <h2 class="text-base font-semibold leading-7 text-brand-accent">1. Identify & Explain</h2>
+                    <p class="mt-2 font-serif text-4xl sm:text-5xl font-bold text-white">A Family of Ancient Tongues</p>
+                    <p class="mt-6 text-lg leading-8 text-brand-light max-w-3xl mx-auto">
+                        "Gaelic" is not one language, but a family of Goidelic Celtic languages. They descend from Old Irish and represent one of Europe's oldest and richest literary traditions.
+                    </p>
+                </div>
+
+                <!-- Tab System for the 3 Languages -->
+                <div class="mt-16 fade-in">
+                    <div class="flex flex-col sm:flex-row justify-center sm:space-x-4 space-y-2 sm:space-y-0" role="tablist" aria-label="Gaelic Languages">
+                        <button id="tab-irish" role="tab" aria-selected="true" aria-controls="panel-irish" class="tab-button w-full sm:w-auto text-lg font-semibold py-3 px-6 rounded-lg border-2 border-brand-card text-brand-light hover:text-white hover:border-brand-accent">
+                            Irish (Gaeilge)
+                        </button>
+                        <button id="tab-scottish" role="tab" aria-selected="false" aria-controls="panel-scottish" class="tab-button w-full sm:w-auto text-lg font-semibold py-3 px-6 rounded-lg border-2 border-brand-card text-brand-light hover:text-white hover:border-brand-accent">
+                            Scottish Gaelic (Gàidhlig)
+                        </button>
+                        <button id="tab-manx" role="tab" aria-selected="false" aria-controls="panel-manx" class="tab-button w-full sm:w-auto text-lg font-semibold py-3 px-6 rounded-lg border-2 border-brand-card text-brand-light hover:text-white hover:border-brand-accent">
+                            Manx (Gaelg)
+                        </button>
+                    </div>
+
+                    <div class="mt-8 max-w-4xl mx-auto">
+                        <!-- Irish Panel -->
+                        <div id="panel-irish" role="tabpanel" tabindex="0" aria-labelledby="tab-irish" class="tab-panel">
+                            <div class="items-center">
+                                <!-- Image removed -->
+                                <div>
+                                    <h3 class="font-serif text-3xl font-bold text-white">Irish (Gaeilge)</h3>
+                                    <p class="mt-4 text-brand-light">
+                                        The first official language of Ireland, Gaeilge has the oldest vernacular literature in Western Europe. It descends from Primitive Irish, seen in Ogham inscriptions from the 4th century. Today, its daily use is concentrated in rural areas called <strong>Gaeltachtaí</strong>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Scottish Gaelic Panel -->
+                        <div id="panel-scottish" role="tabpanel" tabindex="0" aria-labelledby="tab-scottish" class="tab-panel" hidden>
+                            <div class="items-center">
+                                <!-- Image removed -->
+                                <div>
+                                    <h3 class="font-serif text-3xl font-bold text-white">Scottish Gaelic (Gàidhlig)</h3>
+                                    <p class="mt-4 text-brand-light">
+                                        Brought to Scotland from Ireland around the 6th century by the Dál Riata kingdom, it became the language of the Scottish Highlands and Islands. It has a powerful oral tradition of poetry (bàrdachd) and song (òrain).
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Manx Panel -->
+                        <div id="panel-manx" role="tabpanel" tabindex="0" aria-labelledby="tab-manx" class="tab-panel" hidden>
+                            <div class="items-center">
+                                <!-- Image removed -->
+                                <div>
+                                    <h3 class="font-serif text-3xl font-bold text-white">Manx (Gaelg)</h3>
+                                    <p class="mt-4 text-brand-light">
+                                        The native language of the Isle of Man, Manx is a remarkable story of revival. After the last native speaker died in 1974, a passionate community effort brought it back from the brink. Today, there is a new generation of speakers and an immersion school.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          Section 3: Location / Map (Rubric Q2)
+        -->
+        <section id="where" class="py-20 sm:py-32 bg-brand-card">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center fade-in">
+                    <h2 class="text-base font-semibold leading-7 text-brand-accent">2. Location</h2>
+                    <p class="mt-2 font-serif text-4xl sm:text-5xl font-bold text-white">The Gaelic Heartlands</p>
+                    <p class="mt-6 text-lg leading-8 text-brand-light max-w-3xl mx-auto">
+                        Gaelic languages are spoken in their native homelands on the northwestern edge of Europe. These are primarily rural and coastal communities.
+                    </p>
+                </div>
+                <!-- Image div removed -->
+            </div>
+        </section>
+
+        <!-- 
+          Section 4: Significance & Endangerment (Rubric Q3)
+        -->
+        <section id="why" class="py-20 sm:py-32">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center fade-in">
+                    <h2 class="text-base font-semibold leading-7 text-brand-accent">3. Significance & Endangerment</h2>
+                    <p class="mt-2 font-serif text-4xl sm:text-5xl font-bold text-white">A Soul at Stake</p>
+                    <blockquote class="mt-10 font-serif text-3xl italic text-brand-light">
+                        "Tír gan teanga, tír gan anam."
+                        <span class="block text-xl text-slate-400 mt-2">— An Irish Proverb (A country without a language is a country without a soul)</span>
+                    </blockquote>
+                </div>
+
+                <div class="mt-20 grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Column 1: Significance -->
+                    <div class="fade-in delay-1">
+                        <h3 class="font-serif text-3xl font-bold text-white">Why It Matters</h3>
+                        <p class="text-brand-light mt-4">The language is far more than words; it is a carrier of culture.</p>
+                        <ul class="mt-6 space-y-4 text-brand-light">
+                            <li class="flex items-start">
+                                <span class="text-brand-accent mr-3 mt-1">&#10003;</span>
+                                <span><strong>Cultural Identity:</strong> It's the core of Irish, Scottish, and Manx identity, distinct from the English-speaking world.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brand-accent mr-3 mt-1">&#10003;</span>
+                                <span><strong>Unique Worldview:</strong> The language holds concepts for landscape, community, and spirituality that do not exist in English.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brand-accent mr-3 mt-1">&#10003;</span>
+                                <span><strong>Living Heritage:</strong> It's the language of ancient myths, traditional *sean-nós* (old style) singing, and thousands of poems.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Column 2: Endangerment -->
+                    <div class="fade-in delay-2">
+                        <h3 class="font-serif text-3xl font-bold text-red-400">Why It's Endangered</h3>
+                        <p class="text-brand-light mt-4">All Gaelic languages are listed by UNESCO as "definitely" or "critically" endangered.</p>
+                        <ul class="mt-6 space-y-4 text-brand-light">
+                            <li class="flex items-start">
+                                <span class="text-red-400 mr-3 mt-1">&#10007;</span>
+                                <span><strong>Historical Oppression:</strong> Centuries of English colonization, Penal Laws, and school systems punished children for speaking their native tongue.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-400 mr-3 mt-1">&#10007;</span>
+                                <span><strong>Catastrophe:</strong> The Great Famine (Ireland) and the Highland Clearances (Scotland) devastated the Gaelic-speaking populations.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-400 mr-3 mt-1">&#10007;</span>
+                                <span><strong>Modern Pressure:</strong> English remains the language of global media and economic opportunity, pushing Gaelic to the margins.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          Section 5: Preservation & Proposal (Rubric Q4)
+        -->
+        <section id="revival" class="py-20 sm:py-32 bg-brand-card">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center fade-in">
+                    <h2 class="text-base font-semibold leading-7 text-brand-accent">4. Preservation & Proposal</h2>
+                    <p class="mt-2 font-serif text-4xl sm:text-5xl font-bold text-white">The Revival is Now</p>
+                    <p class="mt-6 text-lg leading-8 text-brand-light max-w-3xl mx-auto">
+                        Despite the challenges, a passionate revival is underway. Here's what's being done, and what we can do next.
+                    </p>
+                </div>
+                
+                <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1: Education -->
+                    <div class="flex flex-col bg-brand-deep p-8 rounded-lg shadow-xl fade-in delay-1">
+                        <h3 class="font-serif text-2xl font-bold text-white">Education & Community</h3>
+                        <p class="mt-4 text-brand-light flex-grow">
+                            The backbone of the revival. <strong>Immersion schools</strong> (*Gaelscoileanna* in Ireland, *Bòrd na Gàidhlig* in Scotland) create new, fluent speakers from childhood. Community classes and apps like Duolingo engage adults.
+                        </p>
+                        <!-- Image removed -->
+                    </div>
+                    
+                    <!-- Card 2: Media -->
+                    <div class="flex flex-col bg-brand-deep p-8 rounded-lg shadow-xl fade-in delay-2">
+                        <h3 class="font-serif text-2xl font-bold text-white">Modern Media</h3>
+                        <p class="mt-4 text-brand-light flex-grow">
+                            Making the language visible and modern. Dedicated TV channels like <strong>TG4</strong> (Ireland) and <strong>BBC Alba</strong> (Scotland) broadcast everything from news and sports to dramas and kids' cartoons, normalizing its use in daily life.
+                        </p>
+                         <!-- Image removed -->
+                    </div>
+
+                    <!-- Card 3: Our Proposal -->
+                    <div class="flex flex-col bg-brand-deep p-8 rounded-lg shadow-xl ring-2 ring-brand-accent fade-in delay-3">
+                        <h3 class="font-serif text-2xl font-bold text-brand-accent">Our Proposal: The Digital Hearth</h3>
+                        <p class="mt-4 text-brand-light flex-grow">
+                            To truly thrive, Gaelic must be a language of play, technology, and "cool." We propose a fund to:
+                        </p>
+                        <ul class="mt-4 space-y-2 text-brand-light list-disc list-inside">
+                            <li>Finance high-production <strong>video games</strong> set in Gaelic mythology.</li>
+                            <li>Sponsor Gaelic-speaking <strong>YouTubers & TikTok creators</strong>.</li>
+                            <li>Invest heavily in <strong>AI voice models</strong> to integrate Gaelic into smart assistants.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 
+      Footer 
+    -->
+    <footer class="bg-brand-deep border-t border-brand-card py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-brand-light">An awareness campaign by:</p>
+            <p class="text-white text-lg font-semibold mt-2">Harsha and Naufil</p>
+            <p class="text-xs text-slate-500 mt-6">Project for Endangered Folk Culture | All images are placeholders.</p>
+        </div>
+    </footer>
+
+    <!-- 
+      JavaScript for Interactions 
+    -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Tab System ---
+            const tablist = document.querySelector('[role="tablist"]');
+            const tabs = tablist.querySelectorAll('[role="tab"]');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    // Deactivate all tabs
+                    tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+                    
+                    // Hide all panels
+                    tab.closest('.fade-in').querySelectorAll('[role="tabpanel"]').forEach(p => p.hidden = true);
+                    
+                    // Activate clicked tab
+                    e.currentTarget.setAttribute('aria-selected', 'true');
+                    
+                    // Show corresponding panel
+                    const panelId = e.currentTarget.getAttribute('aria-controls');
+                    document.getElementById(panelId).hidden = false;
+                });
+            });
+
+            // --- Fade-in on Scroll ---
+            const fadeElems = document.querySelectorAll('.fade-in');
+            
+            const observerOptions = {
+                root: null, // relative to the viewport
+                rootMargin: '0px',
+                threshold: 0.1 // 10% of the element is visible
+            };
+            
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing once it's visible
+                    }
+                });
+            };
+            
+            const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
+            
+            fadeElems.forEach(el => scrollObserver.observe(el));
+
+            // --- Sticky Nav Active Link on Scroll ---
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            const navObserverOptions = {
+                root: null,
+                rootMargin: '-50% 0px -50% 0px', // When the section is in the middle 50% of the viewport
+                threshold: 0
+            };
+
+            const navObserverCallback = (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        
+                        // Remove active class from all links
+                        navLinks.forEach(link => link.classList.remove('nav-active'));
+                        
+                        // Add active class to the corresponding link
+                        const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('nav-active');
+                        }
+                    }
+                });
+            };
+
+            const navObserver = new IntersectionObserver(navObserverCallback, navObserverOptions);
+            sections.forEach(sec => navObserver.observe(sec));
+        });
+    </script>
+
+</body>
+</html>
